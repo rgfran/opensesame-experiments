@@ -1,0 +1,803 @@
+---
+API: 2
+OpenSesame: 3.0.5
+Platform: nt
+---
+set width 1024
+set title "Positive/Negative_Creative/Not creative"
+set synth_backend "legacy"
+set subject_parity "even"
+set subject_nr 0
+set start "Positive_Negative_Professions"
+set sampler_backend "legacy"
+set mouse_backend "legacy"
+set keyboard_backend "legacy"
+set height 768
+set foreground "black"
+set font_size 21
+set font_italic "no"
+set font_family "sans"
+set font_bold "no"
+set description "Default description"
+set coordinates "relative"
+set compensation 0
+set canvas_backend "legacy"
+set background "white"
+
+define sketchpad CreativeNotCreative_Demo
+	set duration "keypress"
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Press any key to begin." x=0 y=128 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="MENTAL HEALTH" x=-256 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="PHYSICAL HEALTH" x=256 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="The word will appear here" x=0 y=0 z_index=0
+
+define feedback CreativeNotCreative_Feedback
+	set reset_variables "yes"
+	set duration "keypress"
+	set description "Provides feedback to the participant"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Your average response time was [avg_rt]ms" x=0 y=-32 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Your accuracy was [acc]%" x=0 y=32 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Press any key to continue." x=0 y=160 z_index=0
+
+define sketchpad CreativeNotCreative_Fixation
+	set duration 500
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="MENTAL HEALTH" x=-256 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="PHYSICAL HEALTH" x=256 y=-192 z_index=0
+	draw fixdot color=black show_if=always style=default x=0 y=0 z_index=0
+
+define sketchpad CreativeNotCreative_Instructions
+	set start_response_interval "no"
+	set duration "keypress"
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="You will again be presented with a set of words to classify into groups. " x=0 y=-160 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="This task requires that you classify items as quickly as you can while making as few mistakes as possible." x=0 y=-128 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text=" These words are words associated with mental health professions and words associated with physical health professions." x=0 y=-96 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text="MENTAL HEALTH" x=-230 y=-32 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text="PHYSICAL HEALTH" x=-230 y=32 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text="doctor, nurse, physician, hospital" x=64 y=32 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="Press Enter to Begin." x=0 y=288 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="Two labels at the top will tell you which words go with each key." x=0 y=224 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="To classify a word as MENTAL HEALTH, press the 'z' key." x=0 y=96 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="To classify a word as PHYSICAL HEALTH, press the '/' key." x=0 y=128 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text="therapy, talking, mind, couch, counseling" x=64 y=-32 z_index=0
+
+define keyboard_response CreativeNotCreative_Keyboard
+	set timeout "infinite"
+	set flush "yes"
+	set duration "keypress"
+	set description "Collects keyboard responses"
+	set allowed_responses "z;/"
+
+define loop CreativeNotCreative_Loop
+	set skip 0
+	set repeat 1
+	set order "random"
+	set offset "no"
+	set item "CreativeNotCreative_Seq"
+	set description "Repeatedly runs another item"
+	set cycles 18
+	set column_order "correct_response;creativenotcreative"
+	set break_if "never"
+	setcycle 0 correct_response "z"
+	setcycle 0 creativenotcreative "Therapy"
+	setcycle 1 correct_response "z"
+	setcycle 1 creativenotcreative "Counseling"
+	setcycle 2 correct_response "z"
+	setcycle 2 creativenotcreative "Mind "
+	setcycle 3 correct_response "z"
+	setcycle 3 creativenotcreative "Emotions"
+	setcycle 4 correct_response "z"
+	setcycle 4 creativenotcreative "Talking "
+	setcycle 5 correct_response "z"
+	setcycle 5 creativenotcreative "Thoughts"
+	setcycle 6 correct_response "z"
+	setcycle 6 creativenotcreative "Couch"
+	setcycle 7 correct_response "z"
+	setcycle 7 creativenotcreative "Freud"
+	setcycle 8 correct_response "z"
+	setcycle 8 creativenotcreative "Psychologist "
+	setcycle 9 correct_response "/"
+	setcycle 9 creativenotcreative "Stethoscope"
+	setcycle 10 correct_response "/"
+	setcycle 10 creativenotcreative "Nurse"
+	setcycle 11 correct_response "/"
+	setcycle 11 creativenotcreative "Doctor"
+	setcycle 12 correct_response "/"
+	setcycle 12 creativenotcreative "Physician "
+	setcycle 13 correct_response "/"
+	setcycle 13 creativenotcreative "Hospital"
+	setcycle 14 correct_response "/"
+	setcycle 14 creativenotcreative "Sterile"
+	setcycle 15 correct_response "/"
+	setcycle 15 creativenotcreative "Body"
+	setcycle 16 correct_response "/"
+	setcycle 16 creativenotcreative "Vaccine"
+	setcycle 17 correct_response "/"
+	setcycle 17 creativenotcreative "Lab coat"
+	run CreativeNotCreative_Seq
+
+define sequence CreativeNotCreative_Seq
+	set flush_keyboard "yes"
+	set description "Runs a number of items in sequence"
+	run CreativeNotCreative_Fixation always
+	run CreativeNotCreative_Sketchpad always
+	run CreativeNotCreative_Keyboard always
+	run __logger always
+
+define sketchpad CreativeNotCreative_Sketchpad
+	set start_response_interval "no"
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="PHYSICAL HEALTH" x=256 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="MENTAL HEALTH" x=-256 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="[creativenotcreative]" x=0 y=0 z_index=0
+
+define sketchpad End
+	set start_response_interval "no"
+	set duration "keypress"
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Thank you for participating in this study!" x=0 y=-64 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="If you have any questions, please contact the researcher." x=0 y=0 z_index=0
+
+define sketchpad NegativeCreative_PositiveNotCreative_Demo
+	set duration "keypress"
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text=OR x=-256 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text=OR x=256 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Press any key to begin." x=0 y=128 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text=NEGATIVE x=-256 y=-224 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="MENTAL HEALTH" x=-256 y=-160 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text=POSITIVE x=256 y=-224 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="PHYSICAL HEALTH" x=256 y=-160 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="The word will appear here" x=0 y=0 z_index=0
+
+define feedback NegativeCreative_PositiveNotCreative_Feedback
+	set reset_variables "yes"
+	set duration "keypress"
+	set description "Provides feedback to the participant"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Your average response time was [avg_rt]ms." x=0 y=-32 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Your accuracy was [acc]%" x=0 y=32 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Press any key to continue." x=0 y=160 z_index=0
+
+define sketchpad NegativeCreative_PositiveNotCreative_Fixation
+	set duration 500
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text=NEGATIVE x=-256 y=-224 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="MENTAL HEALTH" x=-256 y=-160 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text=POSITIVE x=256 y=-224 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="PHYSICAL HEALTH" x=256 y=-160 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text=OR x=-256 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text=OR x=256 y=-192 z_index=0
+	draw fixdot color=black show_if=always style=default x=0 y=0 z_index=0
+
+define sketchpad NegativeCreative_PositiveNotCreative_Instructions
+	set start_response_interval "no"
+	set duration "keypress"
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="Once again, you will be presented with a set of words to classify into groups." x=0 y=-256 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="you saw separately, will be presented together." x=0 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="    To classify a word as           OR            press the 'z' key." x=0 y=-96 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="   To classify a word as        OR         press the '/' key." x=0 y=32 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="Press Enter to begin." x=0 y=288 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="Four labels at the top will tell you which words go with each key." x=0 y=192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="Again, the four categories (POSITIVE, NEGATIVE, CREATIVE, NOT CREATIVE)" x=0 y=-224 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="Please remember that each word will fall in ONLY ONE CATEGORY." x=0 y=160 z_index=0
+	draw textline center=1 color=RED font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text=NEGATIVE x=32 y=-128 z_index=0
+	draw textline center=1 color=RED font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="MENTAL HEALTH" x=32 y=-64 z_index=0
+	draw textline center=1 color=RED font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text=POSITIVE x=32 y=0 z_index=0
+	draw textline center=1 color=RED font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="PHYSICAL HEALTH" x=32 y=64 z_index=0
+
+define keyboard_response NegativeCreative_PositiveNotCreative_Keyboard
+	set timeout "infinite"
+	set flush "yes"
+	set duration "keypress"
+	set description "Collects keyboard responses"
+	set allowed_responses "z;/"
+
+define loop NegativeCreative_PositiveNotCreative_Loop
+	set skip 0
+	set repeat 1
+	set order "random"
+	set offset "no"
+	set item "NegativeCreative_PositiveNotCreative_sEQ"
+	set description "Repeatedly runs another item"
+	set cycles 36
+	set column_order "negcreposnocre;correct_response"
+	set break_if "never"
+	setcycle 0 correct_response "/"
+	setcycle 0 negcreposnocre "Awesome"
+	setcycle 1 correct_response "/"
+	setcycle 1 negcreposnocre "Helpful"
+	setcycle 2 correct_response "/"
+	setcycle 2 negcreposnocre "Beneficial"
+	setcycle 3 correct_response "/"
+	setcycle 3 negcreposnocre "Useful"
+	setcycle 4 correct_response "/"
+	setcycle 4 negcreposnocre "Effective"
+	setcycle 5 correct_response "/"
+	setcycle 5 negcreposnocre "Successful"
+	setcycle 6 correct_response "/"
+	setcycle 6 negcreposnocre "Good"
+	setcycle 7 correct_response "/"
+	setcycle 7 negcreposnocre "Welcoming"
+	setcycle 8 correct_response "/"
+	setcycle 8 negcreposnocre "Necessary"
+	setcycle 9 correct_response "z"
+	setcycle 9 negcreposnocre "Therapy"
+	setcycle 10 correct_response "z"
+	setcycle 10 negcreposnocre "Counseling"
+	setcycle 11 correct_response "z"
+	setcycle 11 negcreposnocre "Mind "
+	setcycle 12 correct_response "z"
+	setcycle 12 negcreposnocre "Emotions"
+	setcycle 13 correct_response "z"
+	setcycle 13 negcreposnocre "Talking "
+	setcycle 14 correct_response "z"
+	setcycle 14 negcreposnocre "Thoughts"
+	setcycle 15 correct_response "z"
+	setcycle 15 negcreposnocre "Couch"
+	setcycle 16 correct_response "z"
+	setcycle 16 negcreposnocre "Freud"
+	setcycle 17 correct_response "z"
+	setcycle 17 negcreposnocre "Psychologist "
+	setcycle 18 correct_response "z"
+	setcycle 18 negcreposnocre "Unhelpful"
+	setcycle 19 correct_response "z"
+	setcycle 19 negcreposnocre "Time consuming"
+	setcycle 20 correct_response "z"
+	setcycle 20 negcreposnocre "Ineffective"
+	setcycle 21 correct_response "z"
+	setcycle 21 negcreposnocre "Bad"
+	setcycle 22 correct_response "z"
+	setcycle 22 negcreposnocre "Scary"
+	setcycle 23 correct_response "z"
+	setcycle 23 negcreposnocre "Intimidating"
+	setcycle 24 correct_response "z"
+	setcycle 24 negcreposnocre "Unnecessary"
+	setcycle 25 correct_response "z"
+	setcycle 25 negcreposnocre "Painful"
+	setcycle 26 correct_response "z"
+	setcycle 26 negcreposnocre "Annoying"
+	setcycle 27 correct_response "/"
+	setcycle 27 negcreposnocre "Stethoscope"
+	setcycle 28 correct_response "/"
+	setcycle 28 negcreposnocre "Nurse"
+	setcycle 29 correct_response "/"
+	setcycle 29 negcreposnocre "Doctor"
+	setcycle 30 correct_response "/"
+	setcycle 30 negcreposnocre "Physician "
+	setcycle 31 correct_response "/"
+	setcycle 31 negcreposnocre "Hospital"
+	setcycle 32 correct_response "/"
+	setcycle 32 negcreposnocre "Sterile"
+	setcycle 33 correct_response "/"
+	setcycle 33 negcreposnocre "Body"
+	setcycle 34 correct_response "/"
+	setcycle 34 negcreposnocre "Vaccine"
+	setcycle 35 correct_response "/"
+	setcycle 35 negcreposnocre "Lab coat"
+	run NegativeCreative_PositiveNotCreative_sEQ
+
+define sketchpad NegativeCreative_PositiveNotCreative_Sketchpad
+	set start_response_interval "no"
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text=OR x=-256 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text=OR x=256 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="[negcreposnocre]" x=0 y=0 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="MENTAL HEALTH" x=-256 y=-160 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="PHYSICAL HEALTH" x=256 y=-160 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text=NEGATIVE x=-256 y=-224 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text=POSITIVE x=256 y=-224 z_index=0
+
+define sequence NegativeCreative_PositiveNotCreative_sEQ
+	set flush_keyboard "yes"
+	set description "Runs a number of items in sequence"
+	run NegativeCreative_PositiveNotCreative_Fixation always
+	run NegativeCreative_PositiveNotCreative_Sketchpad always
+	run NegativeCreative_PositiveNotCreative_Keyboard always
+	run ____logger always
+
+define sketchpad NegativePositive_Demo
+	set duration "keypress"
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Press any key to begin." x=0 y=128 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text=NEGATIVE x=-256 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text=POSITIVE x=256 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="The word will appear here" x=0 y=0 z_index=0
+
+define feedback NegativePositive_Feedback
+	set reset_variables "yes"
+	set duration "keypress"
+	set description "Provides feedback to the participant"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Your average response time was [avg_rt]ms" x=0 y=-32 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Press any key to continue." x=0 y=160 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Your accuracy was [acc]%" x=0 y=32 z_index=0
+
+define sketchpad NegativePositive_Fixation
+	set duration 500
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text=NEGATIVE x=-256 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text=POSITIVE x=256 y=-192 z_index=0
+	draw fixdot color=black show_if=always style=default x=0 y=0 z_index=0
+
+define sketchpad NegativePositive_Instructions
+	set duration "keypress"
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="You will be presented with Negative and Positive words once again. " x=0 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="To classify a word as NEGATIVE," x=-224 y=-64 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="To classify a word as POSITIVE," x=224 y=-64 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="press the 'z' key." x=-224 y=-32 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="press the '/' key." x=224 y=-32 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Two labels at the top will tell you which words go with each key." x=0 y=64 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Press Enter to begin." x=0 y=160 z_index=0
+
+define keyboard_response NegativePositive_Keyboard
+	set timeout "infinite"
+	set flush "yes"
+	set duration "keypress"
+	set description "Collects keyboard responses"
+	set allowed_responses "z;/"
+
+define loop NegativePositive_Loop
+	set skip 0
+	set repeat 1
+	set order "random"
+	set offset "no"
+	set item "NegativePositive_Seq"
+	set description "Repeatedly runs another item"
+	set cycles 18
+	set column_order "negativepositive;correct_response"
+	set break_if "never"
+	setcycle 0 negativepositive "Awesome"
+	setcycle 0 correct_response "/"
+	setcycle 1 negativepositive "Helpful"
+	setcycle 1 correct_response "/"
+	setcycle 2 negativepositive "Beneficial"
+	setcycle 2 correct_response "/"
+	setcycle 3 negativepositive "Useful"
+	setcycle 3 correct_response "/"
+	setcycle 4 negativepositive "Effective"
+	setcycle 4 correct_response "/"
+	setcycle 5 negativepositive "Successful"
+	setcycle 5 correct_response "/"
+	setcycle 6 negativepositive "Good"
+	setcycle 6 correct_response "/"
+	setcycle 7 negativepositive "Welcoming"
+	setcycle 7 correct_response "/"
+	setcycle 8 negativepositive "Necessary"
+	setcycle 8 correct_response "/"
+	setcycle 9 negativepositive "Unhelpful"
+	setcycle 9 correct_response "z"
+	setcycle 10 negativepositive "Time consuming"
+	setcycle 10 correct_response "z"
+	setcycle 11 negativepositive "Ineffective"
+	setcycle 11 correct_response "z"
+	setcycle 12 negativepositive "Bad"
+	setcycle 12 correct_response "z"
+	setcycle 13 negativepositive "Scary"
+	setcycle 13 correct_response "z"
+	setcycle 14 negativepositive "Intimidating"
+	setcycle 14 correct_response "z"
+	setcycle 15 negativepositive "Unnecessary"
+	setcycle 15 correct_response "z"
+	setcycle 16 negativepositive "Painful"
+	setcycle 16 correct_response "z"
+	setcycle 17 negativepositive "Annoying"
+	setcycle 17 correct_response "z"
+	run NegativePositive_Seq
+
+define sequence NegativePositive_Seq
+	set flush_keyboard "yes"
+	set description "Runs a number of items in sequence"
+	run NegativePositive_Fixation always
+	run NegativePositive_Sketchpad always
+	run NegativePositive_Keyboard always
+	run logger always
+
+define sketchpad NegativePositive_Sketchpad
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text=NEGATIVE x=-256 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text=POSITIVE x=256 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="[negativepositive]" x=0 y=0 z_index=0
+
+define feedback PositiveCreative_NegativeNotCreative_Feedback
+	set reset_variables "yes"
+	set duration "keypress"
+	set description "Provides feedback to the participant"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Your accuracy was [acc]%" x=0 y=32 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Press any key to continue." x=0 y=160 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Your average reponse time was [avg_rt]ms" x=0 y=-32 z_index=0
+
+define sketchpad PositiveCreative_NegativeNotCreative_Fixaiton
+	set duration 500
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text=POSITIVE x=-256 y=-224 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="MENTAL HEALTH" x=-256 y=-160 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text=NEGATIVE x=256 y=-224 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="PHYSICAL HEALTH" x=256 y=-160 z_index=0
+	draw fixdot color=black show_if=always style=default x=0 y=0 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text=OR x=-256 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text=OR x=256 y=-192 z_index=0
+
+define sketchpad PositiveCreative_NegativeNotCreative_Instruction
+	set start_response_interval "no"
+	set duration "keypress"
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="However, now the four categories (POSITIVE, NEGATIVE, MENTAL HEALTH, PHYSICAL HEALTH)" x=0 y=-256 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="you saw separately, will be presented together." x=0 y=-224 z_index=0
+	draw textline center=1 color="#000000" font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text=POSITIVE x=-256 y=-160 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="awesome, good, effective, useful, beneficial" x=64 y=-160 z_index=0
+	draw textline center=1 color="#000000" font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text=NEGATIVE x=-256 y=-96 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="painful, bad, ineffective, useless, annoying" x=64 y=-96 z_index=0
+	draw textline center=1 color="#000000" font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="MENTAL HEALTH" x=-256 y=-32 z_index=0
+	draw textline center=1 color="#000000" font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="PHYSICAL HEALTH" x=-256 y=32 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="doctor, nurse, physician, hospital" x=64 y=32 z_index=0
+	draw rect color=black fill=0 h=0 penwidth=1 show_if=always w=0 x=-352 y=-192 z_index=0
+	draw rect color=black fill=0 h=256 penwidth=1 show_if=always w=640 x=-352 y=-192 z_index=0
+	draw line color="#000000" penwidth=2 show_if=always x1=-160 x2=-160 y1=-192 y2=64 z_index=0
+	draw line color="#000000" penwidth=2 show_if=always x1=-352 x2=288 y1=-64 y2=-64 z_index=0
+	draw line color="#000000" penwidth=1 show_if=always x1=-352 x2=288 y1=-128 y2=-128 z_index=0
+	draw line color="#000000" penwidth=1 show_if=always x1=-352 x2=288 y1=0 y2=0 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="Once again, you will be presented with a set of words to classify into groups." x=0 y=-288 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="Press Enter for further instructions." x=0 y=256 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="Please remember that each word will fall in ONLY ONE CATEGORY." x=0 y=128 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="Four labels at the top will tell you which words go with each key." x=0 y=160 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="therapy, talking, mind, couch, counseling" x=64 y=-32 z_index=0
+
+define keyboard_response PositiveCreative_NegativeNotCreative_Keyboard
+	set timeout "infinite"
+	set flush "yes"
+	set duration "keypress"
+	set description "Collects keyboard responses"
+	set allowed_responses "z;/"
+
+define loop PositiveCreative_NegativeNotCreative_Loop
+	set skip 0
+	set repeat 1
+	set order "random"
+	set offset "no"
+	set item "PositiveCreative_NegativeNotCreative_Seq"
+	set description "Repeatedly runs another item"
+	set cycles 36
+	set column_order "correct_response;poscrenegnocre"
+	set break_if "never"
+	setcycle 0 correct_response "z"
+	setcycle 0 poscrenegnocre "Awesome"
+	setcycle 1 correct_response "z"
+	setcycle 1 poscrenegnocre "Helpful"
+	setcycle 2 correct_response "z"
+	setcycle 2 poscrenegnocre "Beneficial"
+	setcycle 3 correct_response "z"
+	setcycle 3 poscrenegnocre "Useful"
+	setcycle 4 correct_response "z"
+	setcycle 4 poscrenegnocre "Effective"
+	setcycle 5 correct_response "z"
+	setcycle 5 poscrenegnocre "Successful"
+	setcycle 6 correct_response "z"
+	setcycle 6 poscrenegnocre "Good"
+	setcycle 7 correct_response "z"
+	setcycle 7 poscrenegnocre "Welcoming"
+	setcycle 8 correct_response "z"
+	setcycle 8 poscrenegnocre "Necessary"
+	setcycle 9 correct_response "z"
+	setcycle 9 poscrenegnocre "Therapy"
+	setcycle 10 correct_response "z"
+	setcycle 10 poscrenegnocre "Counseling"
+	setcycle 11 correct_response "z"
+	setcycle 11 poscrenegnocre "Mind "
+	setcycle 12 correct_response "z"
+	setcycle 12 poscrenegnocre "Emotions"
+	setcycle 13 correct_response "z"
+	setcycle 13 poscrenegnocre "Talking "
+	setcycle 14 correct_response "z"
+	setcycle 14 poscrenegnocre "Thoughts"
+	setcycle 15 correct_response "z"
+	setcycle 15 poscrenegnocre "Couch"
+	setcycle 16 correct_response "z"
+	setcycle 16 poscrenegnocre "Freud"
+	setcycle 17 correct_response "z"
+	setcycle 17 poscrenegnocre "Psychologist "
+	setcycle 18 correct_response "/"
+	setcycle 18 poscrenegnocre "Unhelpful"
+	setcycle 19 correct_response "/"
+	setcycle 19 poscrenegnocre "Time consuming"
+	setcycle 20 correct_response "/"
+	setcycle 20 poscrenegnocre "Ineffective"
+	setcycle 21 correct_response "/"
+	setcycle 21 poscrenegnocre "Bad"
+	setcycle 22 correct_response "/"
+	setcycle 22 poscrenegnocre "Scary"
+	setcycle 23 correct_response "/"
+	setcycle 23 poscrenegnocre "Intimidating"
+	setcycle 24 correct_response "/"
+	setcycle 24 poscrenegnocre "Unnecessary"
+	setcycle 25 correct_response "/"
+	setcycle 25 poscrenegnocre "Painful"
+	setcycle 26 correct_response "/"
+	setcycle 26 poscrenegnocre "Annoying"
+	setcycle 27 correct_response "/"
+	setcycle 27 poscrenegnocre "Stethoscope"
+	setcycle 28 correct_response "/"
+	setcycle 28 poscrenegnocre "Nurse"
+	setcycle 29 correct_response "/"
+	setcycle 29 poscrenegnocre "Doctor"
+	setcycle 30 correct_response "/"
+	setcycle 30 poscrenegnocre "Physician "
+	setcycle 31 correct_response "/"
+	setcycle 31 poscrenegnocre "Hospital"
+	setcycle 32 correct_response "/"
+	setcycle 32 poscrenegnocre "Sterile"
+	setcycle 33 correct_response "/"
+	setcycle 33 poscrenegnocre "Body"
+	setcycle 34 correct_response "/"
+	setcycle 34 poscrenegnocre "Vaccine"
+	setcycle 35 correct_response "/"
+	setcycle 35 poscrenegnocre "Lab coat"
+	run PositiveCreative_NegativeNotCreative_Seq
+
+define sequence PositiveCreative_NegativeNotCreative_Seq
+	set flush_keyboard "yes"
+	set description "Runs a number of items in sequence"
+	run PositiveCreative_NegativeNotCreative_Fixaiton always
+	run PositiveCreative_NegativeNotCreative_Sketchpad always
+	run PositiveCreative_NegativeNotCreative_Keyboard always
+	run ___logger always
+
+define sketchpad PositiveCreative_NegativeNotCreative_Sketchpad
+	set start_response_interval "no"
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text=OR x=-256 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text=OR x=256 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="MENTAL HEALTH" x=-256 y=-160 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="PHYSICAL HEALTH" x=256 y=-160 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text=POSITIVE x=-256 y=-224 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text=NEGATIVE x=256 y=-224 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="[poscrenegnocre]" x=0 y=0 z_index=0
+
+define sketchpad PositiveNegative_Demo
+	set duration "keypress"
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text=POSITIVE x=-256 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text=NEGATIVE x=256 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="The word will appear here" x=0 y=0 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Press any key to begin." x=0 y=128 z_index=0
+
+define feedback PositiveNegative_Feedback
+	set reset_variables "yes"
+	set duration "keypress"
+	set description "Provides feedback to the participant"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Your accuracy was [acc]%" x=0 y=32 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Press any key to continue." x=0 y=160 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Your average response time was [avg_rt]ms" x=0 y=-32 z_index=0
+
+define sketchpad PositiveNegative_Instructions
+	set start_response_interval "no"
+	set duration "keypress"
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="You will be presented with a set of words to classify into groups." x=0 y=-160 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="This task requires that you classify items as quickly as you can while making as few mistakes as possible. " x=0 y=-128 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="The following is a list of category labels and example items that belong to each of those categories." x=0 y=-96 z_index=0
+	draw line color=black penwidth=1 show_if=always x1=-288 x2=-288 y1=32 y2=32 z_index=0
+	draw line color=black penwidth=1 show_if=always x1=288 x2=-288 y1=32 y2=32 z_index=0
+	draw line color=black penwidth=1 show_if=always x1=-192 x2=-192 y1=-32 y2=96 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text=POSITIVE x=-256 y=0 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text=NEGATIVE x=-256 y=64 z_index=0
+	draw rect color=black fill=0 h=128 penwidth=1 show_if=always w=672 x=-320 y=-32 z_index=0
+	draw line color=black penwidth=1 show_if=always x1=-320 x2=-288 y1=32 y2=32 z_index=0
+	draw line color=black penwidth=1 show_if=always x1=352 x2=288 y1=32 y2=32 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="awesome, good, effective, useful, beneficial" x=64 y=0 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="painful, bad, ineffective, useless, annoying" x=64 y=64 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="To classify a word as POSITIVE, press the 'z' key." x=0 y=128 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="To classify a word as NEGATIVE, press the '/' key." x=0 y=160 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Press Enter to begin." x=0 y=288 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=20 html=yes show_if=always text="Two labels at the top will tell you which words go with each key." x=0 y=224 z_index=0
+
+define keyboard_response PositiveNegative_Keyboard
+	set timeout "infinite"
+	set flush "yes"
+	set duration "keypress"
+	set description "Collects keyboard responses"
+	set allowed_responses "z;/"
+
+define loop PositiveNegative_Loop
+	set skip 0
+	set repeat 1
+	set order "random"
+	set offset "no"
+	set item "PostiveNegative_Seq"
+	set description "Repeatedly runs another item"
+	set cycles 18
+	set column_order "correct_response;positivenegative"
+	set break_if "never"
+	setcycle 0 correct_response "z"
+	setcycle 0 positivenegative "Awesome"
+	setcycle 1 correct_response "z"
+	setcycle 1 positivenegative "Helpful"
+	setcycle 2 correct_response "z"
+	setcycle 2 positivenegative "Beneficial"
+	setcycle 3 correct_response "z"
+	setcycle 3 positivenegative "Useful"
+	setcycle 4 correct_response "z"
+	setcycle 4 positivenegative "Effective"
+	setcycle 5 correct_response "z"
+	setcycle 5 positivenegative "Successful"
+	setcycle 6 correct_response "z"
+	setcycle 6 positivenegative "Good"
+	setcycle 7 correct_response "z"
+	setcycle 7 positivenegative "Welcoming"
+	setcycle 8 correct_response "z"
+	setcycle 8 positivenegative "Necessary"
+	setcycle 9 correct_response "/"
+	setcycle 9 positivenegative "Unhelpful"
+	setcycle 10 correct_response "/"
+	setcycle 10 positivenegative "Time consuming"
+	setcycle 11 correct_response "/"
+	setcycle 11 positivenegative "Ineffective"
+	setcycle 12 correct_response "/"
+	setcycle 12 positivenegative "Bad"
+	setcycle 13 correct_response "/"
+	setcycle 13 positivenegative "Scary"
+	setcycle 14 correct_response "/"
+	setcycle 14 positivenegative "Intimidating"
+	setcycle 15 correct_response "/"
+	setcycle 15 positivenegative "Unnecessary"
+	setcycle 16 correct_response "/"
+	setcycle 16 positivenegative "Painful"
+	setcycle 17 correct_response "/"
+	setcycle 17 positivenegative "Annoying"
+	run PostiveNegative_Seq
+
+define sequence Positive_Negative_Professions
+	set flush_keyboard "yes"
+	set description "Runs a number of items in sequence"
+	run PositiveNegative_Instructions always
+	run PositiveNegative_Demo always
+	run PositiveNegative_Loop always
+	run PositiveNegative_Feedback always
+	run CreativeNotCreative_Instructions always
+	run CreativeNotCreative_Demo always
+	run CreativeNotCreative_Loop always
+	run CreativeNotCreative_Feedback always
+	run PositiveCreative_NegativeNotCreative_Instruction always
+	run PostiveCreative_NegativeNotCreative_Instructions2 always
+	run PostiveCreative_NegativeNotCreative_Demo always
+	run PositiveCreative_NegativeNotCreative_Loop always
+	run PositiveCreative_NegativeNotCreative_Feedback always
+	run NegativePositive_Instructions always
+	run NegativePositive_Demo always
+	run NegativePositive_Loop always
+	run NegativePositive_Feedback always
+	run NegativeCreative_PositiveNotCreative_Instructions always
+	run NegativeCreative_PositiveNotCreative_Demo always
+	run NegativeCreative_PositiveNotCreative_Loop always
+	run NegativeCreative_PositiveNotCreative_Feedback always
+	run ThankYou always
+
+define sketchpad PostiveCreative_NegativeNotCreative_Demo
+	set duration "keypress"
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text=OR x=-256 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text=OR x=256 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Press any key to begin" x=0 y=128 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text=POSITIVE x=-256 y=-224 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="MENTAL HEALTH" x=-256 y=-160 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text=NEGATIVE x=256 y=-224 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="PHYSICAL HEALTH" x=256 y=-160 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="The word will appear here" x=0 y=0 z_index=0
+
+define sketchpad PostiveCreative_NegativeNotCreative_Instructions2
+	set start_response_interval "no"
+	set duration "keypress"
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="     To classify a word as        OR           press the 'z' key." x=0 y=-224 z_index=0
+	draw textline center=1 color=RED font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text=POSITIVE x=32 y=-256 z_index=0
+	draw textline center=1 color=red font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="MENTAL HEALTH" x=32 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text=" To classify a word as           OR           press the '/' key." x=0 y=-64 z_index=0
+	draw textline center=1 color=RED font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text=NEGATIVE x=32 y=-96 z_index=0
+	draw textline center=1 color=RED font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="PHYSICAL HEALTH" x=32 y=-32 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Four labels at the top will tell you which words go with each key." x=0 y=96 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Press Enter to begin." x=0 y=192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Again, please remember that each word will fall in ONLY ONE CATEGORY." x=0 y=64 z_index=0
+
+define sketchpad PostiveNegative_Fixation
+	set duration 500
+	set description "Displays stimuli"
+	draw fixdot color=black show_if=always style=default x=0 y=0 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text=POSITIVE x=-256 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text=NEGATIVE x=256 y=-192 z_index=0
+
+define sequence PostiveNegative_Seq
+	set flush_keyboard "yes"
+	set description "Runs a number of items in sequence"
+	run PostiveNegative_Fixation always
+	run PostiveNegative_Sketchpad always
+	run PositiveNegative_Keyboard always
+	run _logger always
+
+define sketchpad PostiveNegative_Sketchpad
+	set start_response_interval "no"
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text=NEGATIVE x=256 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text=POSITIVE x=-256 y=-192 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="[positivenegative]" x=0 y=0 z_index=0
+
+define sketchpad ThankYou
+	set duration "keypress"
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Your responses have been recorded :)" x=0 y=-64 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=22 html=yes show_if=always text="Thank you for participating!" x=0 y=0 z_index=0
+
+define logger ____logger
+	set description "Logs experimental data"
+	set auto_log "yes"
+
+define logger ___logger
+	set description "Logs experimental data"
+	set auto_log "yes"
+
+define fixation_dot __fixation_dot
+	set y 0
+	set x 0
+	set style "cross"
+	set penwidth 2
+	set foreground "black"
+	set duration 250
+	set description "Presents a central fixation dot with a choice of various styles"
+	set background "white"
+
+define logger __logger
+	set description "Logs experimental data"
+	set auto_log "yes"
+
+define fixation_dot _fixation_dot
+	set y 0
+	set x 0
+	set style "filled-small"
+	set penwidth 2
+	set foreground "black"
+	set duration 50
+	set description "Presents a central fixation dot with a choice of various styles"
+	set background "white"
+
+define logger _logger
+	set description "Logs experimental data"
+	set auto_log "yes"
+
+define loop _loop
+	set skip 0
+	set repeat 1
+	set order "random"
+	set offset "no"
+	set item "_sequence"
+	set description "Repeatedly runs another item"
+	set cycles 1
+	set column_order ""
+	set break_if "never"
+	run _sequence
+
+define sequence _sequence
+	set flush_keyboard "yes"
+	set description "Runs a number of items in sequence"
+
+define fixation_dot fixation_dot
+	set y 0
+	set x 0
+	set style "default"
+	set penwidth 3
+	set duration 1000
+	set description "Presents a central fixation dot with a choice of various styles"
+
+define logger logger
+	set description "Logs experimental data"
+	set auto_log "yes"
+
+define sketchpad sketchpad
+	set duration "keypress"
+	set description "Displays stimuli"
+
