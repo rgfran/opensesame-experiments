@@ -16,6 +16,8 @@ flanker-word-face: this is a simple flanker task looking at how faces affect res
 
 IAT: these IATs are from student projects to look at a basic race IAT examining the association between Black and White faces with good and bad adjectives and the association between mental health and physical health words with good and bad adjectives. They are abbreviated from the traditional IAT and the data output is very messy.
 
+jRateExperiment.osexp - versions of a face rating task using a similar paradigm as Franklin & Zebrowitz for rating faces for judicial elections. This paper is out for review.
+
 References:
 Franklin, R. G., Jr & Zebrowitz, L. A. (2016). The influence of political candidates’ facial appearance on older and younger adults’ voting choices and actual electoral success. Cogent OA Psychology. DOI: 10.1080/23311908.2016.1151602
 
